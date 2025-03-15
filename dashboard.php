@@ -22,7 +22,7 @@ $user = $result->fetch_assoc();  // Fetch the data as an associative array
 // Check if user exists
 if ($user) {
     $username = $user['username'];
-    $profile_picture = $user['profile_pic'];
+    $profile_picture  = $user['profile_pic'];
 } else {
     // Handle case where no user is found (Optional: Redirect or show a message)
     echo "User not found.";
