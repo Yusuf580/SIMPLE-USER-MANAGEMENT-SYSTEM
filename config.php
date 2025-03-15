@@ -8,8 +8,6 @@
 
     if($conn->connect_error){
         die("Connection failed".$conn->connect_error);
-    }else{
-        echo "Connectionn created succesfully";
     }
 
     /*$sql = "CREATE TABLE IF NOT EXISTS users (
