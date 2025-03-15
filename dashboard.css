@@ -81,3 +81,73 @@ body {
     color: white; /* White text */
     font-weight: bold;
 }
+
+/* Profile Form Styling */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 25px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Picture Preview */
+.profile-pic-container {
+    text-align: center;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.profile-pic-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #5aa2c4;
+}
+
+/* Form Fields */
+.profile-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.profile-form .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+    text-align: left; 
+    display: block; 
+}
+
+.profile-form .form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.profile-form button {
+    padding: 12px;
+    background: #216b34;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.profile-form button:hover {
+    background: #176b4b;
+}
+
+.profile-form label i {
+    margin-right: 5px;
+}
