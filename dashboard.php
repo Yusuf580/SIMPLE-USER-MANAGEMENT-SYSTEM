@@ -49,6 +49,10 @@ if ($user) {
     <?php else: ?>
         <p>No profile picture available.</p>
     <?php endif; ?>
-
+    <br>
+    <br>
+    <!-- button to delete user account-->
+    <button onclick="confirmDelete()">Delete Account</button>
+    <script src="delete.js"></script>
 </body>
 </html>
