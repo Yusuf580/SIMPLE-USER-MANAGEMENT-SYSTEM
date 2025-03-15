@@ -35,20 +35,42 @@ if ($user) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css"> <!-- Link to external CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>User Profile</h1>
-    
-    <!-- Display Username -->
-    <p><strong>Username:</strong> <?php echo htmlspecialchars($username); ?></p>
+    <div class="dashboard-container">
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <hr class="separator">
+        <ul>
+            <li><a href="dashboard.php" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="edit.php" class="nav-link"><i class="fas fa-edit"></i> Edit</a></li>
+            <li><a href="logout.php" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="delete.php" class="nav-link"><i class="fas fa-trash-alt"></i> Delete Account</a></li>
+        </ul>
+    </div>
 
-    <!-- Display Profile Picture -->
-    <?php if ($profile_picture): ?>
-        <img src="uploads/<?php echo htmlspecialchars($profile_picture); ?>" alt="Profile Picture" width="200">
-    <?php else: ?>
-        <p>No profile picture available.</p>
-    <?php endif; ?>
 
+        <div class="content">
+            <h1>Welcome Back, <?php echo htmlspecialchars($username); ?>!</h1>
+            <img src="uploads/<?php echo htmlspecialchars($profile_picture); ?>" alt="Profile Picture">
+        </div>
+    </div>
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+        let navLinks = document.querySelectorAll(".nav-link");
+
+        navLinks.forEach(link => {
+            if (link.getAttribute("href") === currentPage) {
+                link.classList.add("active"); // Add 'active' class to current page link
+            }
+        });
+    });
+</script>
+
 </html>

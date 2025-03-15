@@ -1,0 +1,153 @@
+/* Global Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    background: #1a25;
+}
+
+.sidebar ul li a:hover {
+    background: #1a252f;
+}
+
+/* Main Content */
+.content {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    text-align: center;
+}
+
+.content h1 {
+    color: #333;
+}
+
+/* Profile Picture */
+.content img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    margin-top: 10px;
+}
+
+/* Separator Styling */
+.separator {
+    border: none;
+    border-top: 1px solid #ccc; /* Adds a thin line */
+    margin: 10px 0;  /* Adds space above and below the separator */
+}
+
+/* Highlight active page */
+.sidebar ul li a.active {
+    background-color: #7aaa4e; /* Blue background */
+    color: white; /* White text */
+    font-weight: bold;
+}
+
+/* Profile Form Styling */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 25px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Picture Preview */
+.profile-pic-container {
+    text-align: center;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.profile-pic-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #5aa2c4;
+}
+
+/* Form Fields */
+.profile-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.profile-form .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+    text-align: left; 
+    display: block; 
+}
+
+.profile-form .form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.profile-form button {
+    padding: 12px;
+    background: #216b34;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.profile-form button:hover {
+    background: #176b4b;
+}
+
+.profile-form label i {
+    margin-right: 5px;
+}
