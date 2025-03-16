@@ -34,7 +34,7 @@ if ($user) {
 
         // Destroy the session to log the user out
         session_destroy();
-        header("Location: goodbye.php");  // Redirect to a goodbye page
+        header("Location: register.html");  // Redirect to a goodbye page
         exit;
     } else {
         echo "Error deleting account.";

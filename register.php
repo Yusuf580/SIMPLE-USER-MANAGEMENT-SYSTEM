@@ -27,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssss", $username, $email, $password, $image_name);
     
     if ($stmt->execute()) {
-        echo "Registration successful!";
+        header("Location: login.html?registered=success");
+        exit();
     } else {
         echo "Error: " . $stmt->error;
     }
