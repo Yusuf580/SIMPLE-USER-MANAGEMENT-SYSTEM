@@ -14,18 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_result($id, $username, $hashed_password);
     $stmt->fetch();
 
-    if (password_verify($password, $hashed_password)) {
-        $_SESSION['user_id'] = $id;
-        $_SESSION['username'] = $username;
-        $_SESSION['email']=$email;
-
-        if ($remember) {
-            setcookie("user_email", $email, time() + (86400 * 30), "/");
+    if ($stmt->num_rows > 0) {
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['user_id'] = $id;
+            $_SESSION['username'] = $username;
+    
+            if ($remember) {
+                setcookie("user_email", $email, time() + (86400 * 30), "/");
+            }
+    
+            header("Location: dashboard.php");
         }
+    } 
 
-        header("Location: dashboard.php");
-    } else {
-        echo "Invalid credentials!";
+     else {
+        echo '<script> alert("Invalid credentials!");</script>';
     }
 }
 ?>

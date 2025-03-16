@@ -1,47 +1,45 @@
 <?php
-session_start();
-#script to handle deleting user details 
-$email=$_SESSION['email'];
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "user_management";
-echo "$email";
+session_start();  // Start the session to access the session variables
+require 'config.php';  // Include your database configuration
 
-$conn = new mysqli($servername,$username,$password,$database);
+// Ensure the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    echo "Please log in to delete your account.";
+    exit;  // Stop the script if the user is not logged in
+}
 
+$user_id = $_SESSION['user_id'];
 
-// Query to fetch profile picture name to be deleted
-$query = "SELECT profile_pic FROM users WHERE email = ?";
+// Query to get the user's profile picture path from the database
+$query = "SELECT profile_pic FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("i", $email);  
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$user = $result->fetch_assoc();  
-$image=$user['profile_pic'];
+$user = $result->fetch_assoc();  // Fetch the user data
 
-$imagepath="uploads/".$image;
+if ($user) {
+    $profile_picture = $user['profile_pic'];
 
+    // Delete the user from the database
+    $delete_query = "DELETE FROM users WHERE id = ?";
+    $delete_stmt = $conn->prepare($delete_query);
+    $delete_stmt->bind_param("i", $user_id);
+    if ($delete_stmt->execute()) {
+        // Remove the user's profile picture from the server
+        $profile_picture_path = "uploads/" . $profile_picture;
+        if (file_exists($profile_picture_path)) {
+            unlink($profile_picture_path);  // Delete the profile picture file
+        }
 
-
-$sql="DELETE FROM users WHERE email=?";
-$stmt=$conn->prepare($sql);
-$stmt->bind_param("i",$email);
-
-if($stmt->execute()){
-global $imagepath;
-unlink("$imagepath");   //deletes image from server
-
-//release resources
-    session_destroy();
-    $stmt->close();
-    $conn->close();
-   header("location:login.html");
+        // Destroy the session to log the user out
+        session_destroy();
+        header("Location: register.html");  // Redirect to a goodbye page
+        exit;
+    } else {
+        echo "Error deleting account.";
+    }
+} else {
+    echo "User not found.";
 }
-else{
-    echo "Error deleting account!";
-}
-
-
-
 ?>
