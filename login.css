@@ -113,7 +113,6 @@ button:hover {
 .success-message {
     color: rgb(238, 237, 234); /* Text color */
     background-color: rgb(60, 201, 60); /* Green background */
-    
     text-align: center;
     margin-bottom: 10px;
     padding: 15px; /* Add some padding for better spacing */
@@ -121,4 +120,12 @@ button:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     font-size: 16px; /* Adjust font size */
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 

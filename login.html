@@ -13,6 +13,9 @@
         <!-- Success Message (Hidden by Default) -->
         <p id="success-message" class="success-message" style="display: none;">Registration successful! Please log in.</p>
 
+        <!-- Error Message for Invalid Credentials -->
+        <p id="error-message" class="error-message" style="display: none;">Invalid email or password. Please try again.</p>
+
         <form action="login.php" method="post">
             <div class="form-group">
                 <input type="email" name="email" required placeholder="Email">
@@ -31,11 +34,17 @@
     </div>
 
     <script>
-        // Check if the URL contains ?registered=success
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("registered") === "success") {
-            document.getElementById("success-message").style.display = "block";
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (urlParams.get("registered") === "success") {
+                document.getElementById("success-message").style.display = "block";
+            }
+
+            if (urlParams.get("error") === "invalid") {
+                document.getElementById("error-message").style.display = "block";
+            }
+        });
     </script>
 </body>
 </html>
