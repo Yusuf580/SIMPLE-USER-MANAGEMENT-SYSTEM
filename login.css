@@ -91,3 +91,41 @@ button:hover {
 .register-link a:hover {
     text-decoration: underline;
 }
+
+/* Forgot Password Styling */
+.forgot-password {
+    text-align: center;
+    margin-top: 15px; /* Adjusted margin for better spacing */
+}
+
+.forgot-password a {
+    color: #2a6838; /* Green color for better visibility */
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.forgot-password a:hover {
+    color: #1a4d26; /* Darker green for hover effect */
+    text-decoration: underline;
+}
+
+.success-message {
+    color: rgb(238, 237, 234); /* Text color */
+    background-color: rgb(60, 201, 60); /* Green background */
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 15px; /* Add some padding for better spacing */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-size: 16px; /* Adjust font size */
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+

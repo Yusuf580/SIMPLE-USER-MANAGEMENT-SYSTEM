@@ -34,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             // SMTP Configuration
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // SMTP server (use smtp.gmail.com for Gmail)
+            $mail->Host = 'smtp.gmail.com'; 
             $mail->SMTPAuth = true;
-            $mail->Username = 'yusufandrew580@gmail.com'; // Replace with your Gmail address
-            $mail->Password = 'dsxu skgo ozou rypi'; // Replace with your Google App Password
+            $mail->Username = 'yusufandrew580@gmail.com';
+            $mail->Password = 'dsxu skgo ozou rypi';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
@@ -49,14 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Body = "Click the link below to reset your password:<br><br>
                            <a href='http://localhost/SIMPLE-USER-MANAGEMENT-SYSTEM/reset_password.php?token=$token'>Reset Password</a>";
 
-            // Send Email
             $mail->send();
-            echo "A password reset link has been sent to your email.";
+            header("Location: forgot_password.php?status=success");
+            exit();
         } catch (Exception $e) {
-            echo "Failed to send email. Error: {$mail->ErrorInfo}";
+            header("Location: forgot_password.php?status=failed");
+            exit();
         }
     } else {
-        echo "No account found with that email.";
+        header("Location: forgot_password.php?status=error");
+        exit();
     }
 
     $stmt->close();

@@ -1,26 +1,41 @@
 <?php
 require 'config.php'; // Include database connection
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $token = $_POST['token'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    // Verify token
+    if ($password !== $confirm_password) {
+        $_SESSION['error'] = "Passwords do not match.";
+        header("Location: reset_password.php?token=$token");
+        exit();
+    }
+
+    // Hash the new password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Verify token validity
     $stmt = $conn->prepare("SELECT * FROM users WHERE reset_token = ? AND token_expiry > NOW()");
-    $stmt->bind_param("s", $token);  // Bind the token parameter as a string
+    $stmt->bind_param("s", $token);
     $stmt->execute();
     $result = $stmt->get_result();
-    $user = $result->fetch_assoc(); // Fetch associative array
+    $user = $result->fetch_assoc();
 
     if ($user) {
-        // Update the password field (correcting 'password' to 'pass_word')
+        // Update password and clear the token
         $stmt = $conn->prepare("UPDATE users SET pass_word = ?, reset_token = NULL, token_expiry = NULL WHERE reset_token = ?");
-        $stmt->bind_param("ss", $password, $token);  // Bind parameters
+        $stmt->bind_param("ss", $hashed_password, $token);
         $stmt->execute();
 
-        echo "Password reset successful. <a href='login.html'>Login</a>";
+        $_SESSION['success'] = "Password reset successful. You can now <a href='login.html' style='display: inline-block; padding: 5px 10px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; transition: background-color 0.3s ease;'>login</a>.";
+        header("Location: reset_password.php?token=$token");
+        exit();
     } else {
-        echo "Invalid or expired token.";
+        $_SESSION['error'] = "Invalid or expired token.";
+        header("Location: reset_password.php?token=$token");
+        exit();
     }
 }
 ?>
